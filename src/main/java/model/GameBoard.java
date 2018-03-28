@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 public class GameBoard {
 
-    public static final int boardSize = AppConstants.BOARDSIZE;
+    public static final int boardSize = AppConstants.BOARD_SIZE;
     private TileState boardTiles[][];
     private ScoreBoard scoreBoard;
     private Player currentPlayer;
@@ -105,8 +105,8 @@ public class GameBoard {
     }
 
     public boolean areValidMovesPending(Player p) {
-        for (int i = 0; i < AppConstants.BOARDSIZE; i++) {
-            for (int j = 0; j < AppConstants.BOARDSIZE; j++) {
+        for (int i = 0; i < AppConstants.BOARD_SIZE; i++) {
+            for (int j = 0; j < AppConstants.BOARD_SIZE; j++) {
                 if (boardTiles[i][j].equals(TileState.Blank)) {
                     try {
                         GameBoardLogic.isValidMoveForPlayer(i, j, p, this, ActionType.MOVES_PENDING_LOGIC);

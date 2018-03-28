@@ -12,7 +12,7 @@ public class GameBoardLogic {
     public static boolean isValidMoveForPlayer(int row, int column, Player currentPlayer, GameBoard gameBoard, ActionType actionType) throws InvalidMoveException, AlreadyOccupiedTileException {
         TileState tileState = gameBoard.getBoardTiles()[row][column];
         if (!tileState.equals(TileState.Blank)) {
-            throw new AlreadyOccupiedTileException(AppConstants.alreadyOccupiedTileExceptionMessage);
+            throw new AlreadyOccupiedTileException(AppConstants.ALREADY_OCCUPIED_TILE_EXCEPTION_MESSAGE);
         }
 
         List<Boolean> checkDirections = new ArrayList<>();
@@ -34,7 +34,7 @@ public class GameBoardLogic {
             }
             return calcs;
         } else {
-            throw new InvalidMoveException(AppConstants.invalidMoveExceptionMessage);
+            throw new InvalidMoveException(AppConstants.INVALID_MOVE_EXCEPTION_MESSAGE);
         }
 
     }
@@ -44,7 +44,7 @@ public class GameBoardLogic {
         TileState[][] boardTiles = gameBoard.getBoardTiles();
         TileState currentPlayerTileState = currentPlayer.getTileState();
         TileState opponentPlayerTileState = currentPlayer.getTileState().equals(TileState.X) ? TileState.O : TileState.X;
-        for (int i = row + 1, j = column - 1; i < AppConstants.BOARDSIZE && j >= 0; i++, j--) {
+        for (int i = row + 1, j = column - 1; i < AppConstants.BOARD_SIZE && j >= 0; i++, j--) {
             TileState firstTile = boardTiles[i][j];
             if (firstTile.equals(TileState.Blank)) {
                 return false;
@@ -52,14 +52,14 @@ public class GameBoardLogic {
             if (firstTile.equals(currentPlayerTileState)) {
                 return false;
             }
-            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARDSIZE && j - 1 >= 0) {
+            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARD_SIZE && j - 1 >= 0) {
                 conversionCount++;
                 i++;
                 j--;
                 firstTile = boardTiles[i][j];
             }
 
-            if (i < AppConstants.BOARDSIZE && j >= 0) {
+            if (i < AppConstants.BOARD_SIZE && j >= 0) {
                 TileState lastTile = boardTiles[i][j];
                 if (lastTile.equals(currentPlayerTileState)) {
                     if (ActionType.USER_INPUT.equals(actionType)) {
@@ -81,7 +81,7 @@ public class GameBoardLogic {
         TileState[][] boardTiles = gameBoard.getBoardTiles();
         TileState currentPlayerTileState = currentPlayer.getTileState();
         TileState opponentPlayerTileState = currentPlayer.getTileState().equals(TileState.X) ? TileState.O : TileState.X;
-        for (int i = row + 1, j = column + 1; i < AppConstants.BOARDSIZE && j < AppConstants.BOARDSIZE; i++, j++) {
+        for (int i = row + 1, j = column + 1; i < AppConstants.BOARD_SIZE && j < AppConstants.BOARD_SIZE; i++, j++) {
             TileState firstTile = boardTiles[i][j];
             if (firstTile.equals(TileState.Blank)) {
                 return false;
@@ -89,14 +89,14 @@ public class GameBoardLogic {
             if (firstTile.equals(currentPlayerTileState)) {
                 return false;
             }
-            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARDSIZE && j + 1 < AppConstants.BOARDSIZE) {
+            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARD_SIZE && j + 1 < AppConstants.BOARD_SIZE) {
                 conversionCount++;
                 i++;
                 j++;
                 firstTile = boardTiles[i][j];
             }
 
-            if (i < AppConstants.BOARDSIZE && j < AppConstants.BOARDSIZE) {
+            if (i < AppConstants.BOARD_SIZE && j < AppConstants.BOARD_SIZE) {
                 TileState lastTile = boardTiles[i][j];
                 if (lastTile.equals(currentPlayerTileState)) {
                     if (ActionType.USER_INPUT.equals(actionType)) {
@@ -156,7 +156,7 @@ public class GameBoardLogic {
         TileState currentPlayerTileState = currentPlayer.getTileState();
 
         TileState opponentPlayerTileState = currentPlayer.getTileState().equals(TileState.X) ? TileState.O : TileState.X;
-        for (int i = row - 1, j = column + 1; i >= 0 && j < AppConstants.BOARDSIZE; i--, j++) {
+        for (int i = row - 1, j = column + 1; i >= 0 && j < AppConstants.BOARD_SIZE; i--, j++) {
             TileState firstTile = boardTiles[i][j];
             if (firstTile.equals(TileState.Blank)) {
                 return false;
@@ -164,14 +164,14 @@ public class GameBoardLogic {
             if (firstTile.equals(currentPlayerTileState)) {
                 return false;
             }
-            while (firstTile.equals(opponentPlayerTileState) && i - 1 >= 0 && j + 1 < AppConstants.BOARDSIZE) {
+            while (firstTile.equals(opponentPlayerTileState) && i - 1 >= 0 && j + 1 < AppConstants.BOARD_SIZE) {
                 conversionCount++;
                 i--;
                 j++;
                 firstTile = boardTiles[i][j];
             }
 
-            if (i >= 0 && j < AppConstants.BOARDSIZE) {
+            if (i >= 0 && j < AppConstants.BOARD_SIZE) {
                 TileState lastTile = boardTiles[i][j];
                 if (lastTile.equals(currentPlayerTileState)) {
                     if (ActionType.USER_INPUT.equals(actionType)) {
@@ -193,7 +193,7 @@ public class GameBoardLogic {
         TileState[][] boardTiles = gameBoard.getBoardTiles();
         TileState currentPlayerTileState = currentPlayer.getTileState();
         TileState opponentPlayerTileState = currentPlayer.getTileState().equals(TileState.X) ? TileState.O : TileState.X;
-        for (int i = row + 1; i < AppConstants.BOARDSIZE; i++) {
+        for (int i = row + 1; i < AppConstants.BOARD_SIZE; i++) {
             TileState firstTile = boardTiles[i][column];
             if (firstTile.equals(TileState.Blank)) {
                 return false;
@@ -201,13 +201,13 @@ public class GameBoardLogic {
             if (firstTile.equals(currentPlayerTileState)) {
                 return false;
             }
-            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARDSIZE) {
+            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARD_SIZE) {
                 conversionCount++;
                 i++;
                 firstTile = boardTiles[i][column];
             }
 
-            if (i < AppConstants.BOARDSIZE) {
+            if (i < AppConstants.BOARD_SIZE) {
                 TileState lastTile = boardTiles[i][column];
                 if (lastTile.equals(currentPlayerTileState)) {
                     if (ActionType.USER_INPUT.equals(actionType)) {
@@ -266,7 +266,7 @@ public class GameBoardLogic {
         TileState[][] boardTiles = gameBoard.getBoardTiles();
         TileState currentPlayerTileState = currentPlayer.getTileState();
         TileState opponentPlayerTileState = currentPlayer.getTileState().equals(TileState.X) ? TileState.O : TileState.X;
-        for (int i = column + 1; i < AppConstants.BOARDSIZE; i++) {
+        for (int i = column + 1; i < AppConstants.BOARD_SIZE; i++) {
             TileState firstTile = boardTiles[row][i];
             if (firstTile.equals(TileState.Blank)) {
                 return false;
@@ -274,13 +274,13 @@ public class GameBoardLogic {
             if (firstTile.equals(currentPlayerTileState)) {
                 return false;
             }
-            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARDSIZE) {
+            while (firstTile.equals(opponentPlayerTileState) && i + 1 < AppConstants.BOARD_SIZE) {
                 conversionCount++;
                 i++;
                 firstTile = boardTiles[row][i];
             }
 
-            if (i < AppConstants.BOARDSIZE) {
+            if (i < AppConstants.BOARD_SIZE) {
                 TileState lastTile = boardTiles[row][i];
                 if (lastTile.equals(currentPlayerTileState)) {
                     if (ActionType.USER_INPUT.equals(actionType)) {

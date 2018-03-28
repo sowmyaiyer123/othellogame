@@ -24,9 +24,9 @@ public class TileAddress {
         boolean isCharacter = IntStream.rangeClosed('a', 'h').mapToObj(c -> (char) c).anyMatch(character -> character.equals(userTileAddress.charAt(0)));
         if (isCharacterAdmissableInteger(userTileAddress) && isCharacter) {
             rowIdentifier = Integer.parseInt(String.valueOf(userTileAddress.charAt(1))) - 1;
-            columnIdentifier = userTileAddress.charAt(0) - ASCIIOFSMALLA;
+            columnIdentifier = userTileAddress.charAt(0) - ASCII_OF_SMALLA;
         } else {
-            throw new IncorrectTileAddressException(tileAddressExceptionMessage);
+            throw new IncorrectTileAddressException(TILE_ADDRESS_EXCEPTION_MESSAGE);
         }
     }
 
@@ -34,14 +34,14 @@ public class TileAddress {
         try {
             Integer.parseInt(String.valueOf(userTileAddress.charAt(1)));
         } catch (Exception e) {
-            throw new IncorrectTileAddressException(tileAddressExceptionMessage);
+            throw new IncorrectTileAddressException(TILE_ADDRESS_EXCEPTION_MESSAGE);
         }
         return IntStream.rangeClosed(1, 8).anyMatch(x -> x == Integer.parseInt(String.valueOf(userTileAddress.charAt(1))));
     }
 
     private void validateInputLength(String userTileAddress) throws IncorrectTileAddressException {
-        if (userTileAddress.length() != INPUTLENGTH) {
-            throw new IncorrectTileAddressException(tileAddressExceptionMessage);
+        if (userTileAddress.length() != INPUT_LENGTH) {
+            throw new IncorrectTileAddressException(TILE_ADDRESS_EXCEPTION_MESSAGE);
         }
     }
 
